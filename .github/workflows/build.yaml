@@ -1,24 +1,44 @@
 name: Practice_Workflow
 on: push
 jobs:
-  fetching_the_code:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checking out Repo
-        uses: actions/checkout@v6
-  installing_and_linting:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install Dependencies
+        run: npm install
+      - name: Lint the Code
+        run: npm run lint
+
+  test:
     runs-on: ubuntu-latest
-    needs: fetching_the_code
     steps:
-      - name: Installing Node.js
-        uses: actions/setup-node@v6
-      - name: Linting the code
-        run: npm install eslint
-  building_and_testing:
-    runs-on: ubuntu-latest
-    needs: installing_and_linting
-    steps:
-      - name: Running the tests
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
         run: npm test
-      - name: Building the code
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install Dependencies
+        run: npm install
+      - name: Build the Code
         run: npm run build
