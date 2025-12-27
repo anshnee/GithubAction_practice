@@ -1,5 +1,5 @@
 name: output_event
-on: issues
+on: [issues, workflow_dispatch]
 jobs:
   info:
     runs-on: ubuntu-latest
@@ -11,3 +11,4 @@ jobs:
           echo "${{ toJson(github.event) }}"
           echo "${{github.event.issue.title}}"
           echo "${{github.event.issue.number}}"
+          echo "${{github.event.action}}"
