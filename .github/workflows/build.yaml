@@ -2,15 +2,15 @@ name: Practice_Workflow
 on: push
 jobs:
   practice_jobs:
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checking out Repo
         uses: actions/checkout@v6
-      - name: installing node jobs
+      - name: Installing Node.js
         uses: actions/setup-node@v6
-      - name: linting the code
+      - name: Linting the code
         run: npm install eslint
-      - name: running the tests
+      - name: Running the tests
         run: npm test
-      - name: building the code
+      - name: Building the code
         run: npm run build
