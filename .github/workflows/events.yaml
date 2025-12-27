@@ -1,0 +1,13 @@
+name: output_event
+on: issues
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+      - name: Output Event Info
+        run: |
+          echo "${{ toJson(github.event) }}"
+          echo "${{github.event.issue.title}}"
+          echo "${{github.event.issue.number}}"
